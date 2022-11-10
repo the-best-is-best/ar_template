@@ -1,35 +1,16 @@
-# AR Template
+# ar_tester
 
-* Flutter 3.3.8
-
-* [Click see video](https://youtu.be/J1smBxPNpUc)
-
-
-## images
-<img src="github_assets/1.jpg" width="49%"></img>
-<img src="github_assets/2.jpg" width="49%"></img>
+A new Flutter project.
 
 ## Getting Started
 
-A AR Template project created in flutter using Bloc . AR Template supports mobile, clone the appropriate branches mentioned below:
+This project is a starting point for a Flutter application.
 
-The AR Template Is Augmented reality With Flutter Demo
+A few resources to get you started if this is your first Flutter project:
 
-## How to Use 
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-**Step 1:**
-
-Download or clone this repo by using the link below:
-
-```
-git clone https://github.com/the-best-is-best/ar_template.git
-```
-
-
-**Step 2:**
-
-Go to project root and execute the following command in console to get the required dependencies: 
-
-```
-flutter pub get 
-```
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
