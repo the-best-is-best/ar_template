@@ -9,6 +9,7 @@ import 'package:ar_flutter_plugin/models/ar_anchor.dart';
 import 'package:ar_flutter_plugin/models/ar_hittest_result.dart';
 import 'package:ar_flutter_plugin/models/ar_node.dart';
 import 'package:ar_flutter_plugin/widgets/ar_view.dart';
+import 'package:ar_tester/functions.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:vector_math/vector_math_64.dart' as vector;
@@ -79,8 +80,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Map<String, String> assets = {
     "sofa":
-        "https://github.com/the-best-is-best/ar_template/raw/main/chesterfield-sofa.glb",
-    "chair": ""
+        "https://github.com/the-best-is-best/ar_template/raw/main/models/sofa.glb",
+    "chair":
+        "https://github.com/the-best-is-best/ar_template/raw/main/models/chair.glb",
+    "table":
+        "https://github.com/the-best-is-best/ar_template/raw/main/models/table.glb",
   };
 
   void onARViewCreated(
@@ -177,7 +181,61 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(
+          widget.title,
+        ),
+        actions: [
+          ...assets.entries
+              .map(
+                (MapEntry e) => SizedBox(
+                  width: 80,
+                  child: InkWell(
+                    onTap: () {
+                      setState(() {
+                        assetsName = e.key;
+                      });
+                      downloadAsset(
+                          url: e.value,
+                          filename: e.key,
+                          callWhenFileDownload: () {
+                            setState(() {
+                              loaded = false;
+                            });
+                          },
+                          onReceiveProgress: (rcv, total) {
+                            setState(() {
+                              progress = rcv / total;
+                            });
+                          },
+                          callWhenFileDownloaded: () {
+                            setState(() {
+                              progress = 0;
+                              loaded = true;
+                              assetsName = e.key;
+                            });
+                          });
+                    },
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 60,
+                          child: Text(
+                            e.key,
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                        ),
+                        SizedBox(
+                            width: 10,
+                            child: Checkbox(
+                                value: e.key == assetsName, onChanged: (v) {}))
+                      ],
+                    ),
+                  ),
+                ),
+              )
+              .toList(),
+          const SizedBox(width: 10),
+        ],
       ),
       body: !loaded
           ? DownloadItem(progress: progress)
