@@ -99,13 +99,61 @@ class _MyHomePageState extends State<MyHomePage> {
     this.arSessionManager.onInitialize(
           showFeaturePoints: false,
           showPlanes: true,
-          customPlaneTexturePath: "assets/images/triangle.png",
+          customPlaneTexturePath: "Images/triangle.png",
           showWorldOrigin: true,
+          handlePans: true,
+          handleRotation: true,
         );
     this.arObjectManager.onInitialize();
 
     this.arSessionManager.onPlaneOrPointTap = onPlaneOrPointTapped;
     this.arObjectManager.onNodeTap = onNodeTapped;
+    this.arObjectManager.onPanStart = onPanStarted;
+    this.arObjectManager.onPanChange = onPanChanged;
+    this.arObjectManager.onPanEnd = onPanEnded;
+    this.arObjectManager.onRotationStart = onRotationStarted;
+    this.arObjectManager.onRotationChange = onRotationChanged;
+    this.arObjectManager.onRotationEnd = onRotationEnded;
+  }
+
+  onPanStarted(String nodeName) {
+    debugPrint("Started panning node $nodeName");
+  }
+
+  onPanChanged(String nodeName) {
+    debugPrint("Continued panning node $nodeName");
+  }
+
+  onPanEnded(String nodeName, Matrix4 newTransform) {
+    debugPrint("Ended panning node " + nodeName);
+    // final pannedNode =
+    //     this.nodes.firstWhere((element) => element.name == nodeName);
+
+    /*
+    * Uncomment the following command if you want to keep the transformations of the Flutter representations of the nodes up to date
+    * (e.g. if you intend to share the nodes through the cloud)
+    */
+    //pannedNode.transform = newTransform;
+  }
+
+  onRotationStarted(String nodeName) {
+    debugPrint("Started rotating node $nodeName");
+  }
+
+  onRotationChanged(String nodeName) {
+    debugPrint("Continued rotating node $nodeName");
+  }
+
+  onRotationEnded(String nodeName, Matrix4 newTransform) {
+    debugPrint("Ended rotating node $nodeName");
+    // final rotatedNode =
+    //     this.nodes.firstWhere((element) => element.name == nodeName);
+
+    /*
+    * Uncomment the following command if you want to keep the transformations of the Flutter representations of the nodes up to date
+    * (e.g. if you intend to share the nodes through the cloud)
+    */
+    //rotatedNode.transform = newTransform;
   }
 
   Future<void> onRemoveEverything() async {
