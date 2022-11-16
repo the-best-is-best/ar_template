@@ -99,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
     this.arSessionManager.onInitialize(
           showFeaturePoints: false,
           showPlanes: true,
-          customPlaneTexturePath: "Images/triangle.png",
+          customPlaneTexturePath: "assets/images/triangle.png",
           showWorldOrigin: true,
           handlePans: true,
           handleRotation: true,

@@ -30,8 +30,8 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   ar_flutter_plugin: ^0.7.2
+  camera: ^0.10.0+4
   dio: ^4.0.6
-  #dio_cache_interceptor: ^3.3.1
   flutter:
     sdk: flutter
   path_provider: ^2.0.11
